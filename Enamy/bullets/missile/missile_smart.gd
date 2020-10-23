@@ -15,7 +15,7 @@ func start(_transform, _target):
 func seek():
 	var steer = Vector2.ZERO
 	if target:
-		var desired_velocity = (target.position - position).normalized() * SPEED
+		var desired_velocity = (target - position).normalized() * SPEED
 		steer = (desired_velocity - velocity).normalized() * STEER_FORCE
 	return steer
 
@@ -29,5 +29,5 @@ func _physics_process(delta):
 func _on_Lifetime_timeout():
 	queue_free()
 
-func _on_missile_dumb_body_entered(body):
+func _on_missile_dumb_body_entered(_body):
 	queue_free()

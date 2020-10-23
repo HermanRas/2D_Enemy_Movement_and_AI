@@ -19,6 +19,12 @@ config/name="Godot Movement And Ai"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[layer_names]
+
+2d_physics/layer_1="Map"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Turret"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

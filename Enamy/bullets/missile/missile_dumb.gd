@@ -5,7 +5,7 @@ export var SPEED = 350
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
 
-func start(_transform,_target):
+func start(_transform, _target):
 	global_transform = _transform
 	velocity = transform.x * SPEED
 
