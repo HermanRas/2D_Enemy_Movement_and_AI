@@ -1,9 +1,9 @@
 extends Area2D
 
-export (PackedScene) var Missile = load("res://Enamy/bullets/missile/missile-dumb.tscn")
+export (PackedScene) var Missile = load("res://Enamy/bullets/missile/dumb.tscn")
 export (int) var detect_raduis = 300
 export (float) var rotation_speed = PI
-export (float) var fire_rate = 0.5
+export (float) var fire_rate = 0.3
 
 var vis_color = Color(.867, .91, 247, 0.1)
 var target = null
@@ -25,7 +25,8 @@ func _process(_delta):
 func shoot(_target):
 	var b = Missile.instance()
 	b.start(transform, _target)
-	get_parent().add_child(b)
+#	b.scale = Vector2(0.5,0.5)
+	get_parent().add_child_below_node(get_node("Sprite"),b,false)
 	can_shoot = false
 	$ShootTimer.start()
 	

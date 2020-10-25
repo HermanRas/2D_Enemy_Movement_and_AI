@@ -1,9 +1,9 @@
 extends Area2D
 
-export (PackedScene) var Missile = load("res://Enamy/bullets/missile/missile_smart.tscn")
+export (PackedScene) var Missile = load("res://Enamy/bullets/missile/smart.tscn")
 export (int) var detect_raduis = 300
 export (float) var rotation_speed = PI
-export (float) var fire_rate = 0.5
+export (float) var fire_rate = 0.6
 
 var vis_color = Color(.867, .91, 247, 0.1)
 var laser_color = Color(1.0, 0.0, 0.0, 1.0)
@@ -44,7 +44,8 @@ func aim():
 func shoot(_target):
 	var b = Missile.instance()
 	b.start(transform,_target)
-	get_parent().add_child(b)
+#	b.scale = Vector2(0.5,0.5)
+	get_parent().add_child_below_node(get_node("Sprite"),b,false)
 	can_shoot = false
 	$ShootTimer.start()
 
