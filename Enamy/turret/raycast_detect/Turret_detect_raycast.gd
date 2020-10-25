@@ -38,13 +38,12 @@ func aim():
 				$Sprite.self_modulate = Color(1.0 ,0.5 ,0.5 ,1.0)
 				rotation = (target.position - position).angle()
 				if can_shoot:
-					shoot(pos)
+					shoot(pos,target)
 				return
 
-func shoot(_target):
+func shoot(_targetPos,_targetObject=null):
 	var b = Missile.instance()
-	b.start(transform,_target)
-#	b.scale = Vector2(0.5,0.5)
+	b.start(transform,_targetPos,_targetObject)
 	get_parent().add_child_below_node(get_node("Sprite"),b,false)
 	can_shoot = false
 	$ShootTimer.start()

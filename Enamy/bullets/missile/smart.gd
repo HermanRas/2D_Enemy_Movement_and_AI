@@ -5,18 +5,23 @@ export var STEER_FORCE = 50.0
 
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
-var target = null
+var targetPos = null
+var targetObject = null
 
-func start(_transform, _target):
+func start(_transform, _targetPos, _targetObject = null):
 	global_transform = _transform
 	velocity = transform.x * SPEED
-	target = _target
+	targetPos = _targetPos
+	targetObject = _targetObject
 
 func seek():
 	var steer = Vector2.ZERO
-	if target:
-		var desired_velocity = (target - position).normalized() * SPEED
+	if targetPos:
+		var desired_velocity = (targetPos - position).normalized() * SPEED
 		steer = (desired_velocity - velocity).normalized() * STEER_FORCE
+	#Update Pos if Locked target
+	if targetObject:
+		targetPos = targetObject.position
 	return steer
 
 func _physics_process(delta):
